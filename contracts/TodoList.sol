@@ -6,10 +6,16 @@ contract TodoList {
     struct Task {
         uint256 id;
         string text;
-        bool complted;
+        bool completed;
     }
 
-    mapping(uint256 => Task)public tasks ;
+    mapping(uint256 => Task) public tasks;
+
+    function toggleActive(uint256 id) public{
+        Task memory _task = tasks[id];
+        _task.completed = !_task.completed;
+        tasks[id] = _task;
+    }
 
     function createTask(string memory _text) public {
         taskCount++;
